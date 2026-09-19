@@ -21,11 +21,19 @@ function botNumber () {
 	}
 	userNumber = getNumber(userNumber)
 
-	
+	if (counter === 0 ) {
+		let continueAnswer = confirm('Попытки закончились, хотите сыграть еще?')
+		if (continueAnswer) {
+			counter = 10;
+			return botNumber(counter)
+		}
+		return;
+	}
 	if (userNumber === randomNumber) {
 			let answer = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще ? ")
 		if (answer) {
-			return botNumber(10)
+			counter = 10
+			return botNumber(counter)
 		} 
 		return
 	} else if (userNumber > randomNumber) {
@@ -39,6 +47,5 @@ function botNumber () {
 		}
 }
 randomNumber = Math.floor(Math.random() * 100) + 1
-// randomNumber = 25
 botNumber(counter)
 
