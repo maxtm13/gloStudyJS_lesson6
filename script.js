@@ -1,5 +1,6 @@
 "use strict"
 let randomNumber
+let counter = 10
 const isNumber = function (params) {
 	return !isNaN(parseFloat(params)) && isFinite(params)
 };
@@ -12,24 +13,30 @@ const getNumber = function (pseudonum) {
 }
 
 function botNumber () {
-	let userNumber = prompt('Угадай число от 1 до 100' )
+	
+	let userNumber = prompt('Угадай число от 1 до 100, число попыток ' + counter )
 	if (userNumber === null) {
 		alert('Игра окончена');
 		return 
 	}
 	userNumber = getNumber(userNumber)
 
+	
 	if (userNumber === randomNumber) {
-			alert("Поздравляю, Вы угадали")
-			return;
+			let answer = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще ? ")
+		if (answer) {
+			return botNumber(10)
+		} 
+		return
 	} else if (userNumber > randomNumber) {
 			alert("Загаданное число меньше")
+			counter--
 		return botNumber(counter)
 		} else {
 			alert("Загаданное число больше")
+			counter--
 		return botNumber(counter)  
 		}
-	
 }
 randomNumber = Math.floor(Math.random() * 100) + 1
 // randomNumber = 25
